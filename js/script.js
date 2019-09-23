@@ -1,7 +1,6 @@
  window.onload = function() {
     document.getElementById("defaultOpen").click();
 };
-
 function openTab(evt, tabName) {
     // Declare all variables
     let i, tabcontent, tablinks;
@@ -31,5 +30,26 @@ function openTab(evt, tabName) {
             document.getElementById("arrow-1").classList.remove("open");
             document.getElementById("arrow-2").classList.add("open");
         }
+    }
+}
+jQuery(function($){
+   $("#phone").mask("+7 (999) 999-99-99");
+    $("#phone").click(function(){
+    if($("#phone").value === '+7 (___) ___-__-__'){
+         $(this).setCursorPosition(4);  // set position number
+         }
+    });  
+});
+
+
+function isCor(object) {
+    return /[a-z]/i.test(object.value);
+};
+//let pattern =/[a-z]/i;
+function testFIO() {
+  if(isCor(document.getElementById("FIO"))){
+    alert("+");
+    }else{
+    alert("-");
     }
 }

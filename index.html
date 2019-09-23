@@ -5,11 +5,15 @@
     <meta name="viewport" content="width=device-width"> 
     <title>Document</title>
     <link rel="stylesheet" href="css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery.maskedinput.js"></script>
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=36cd3350-d859-492d-9b21-878e9f841947&lang=ru_RU" type="text/javascript"></script>
+    <script src="js/map.js"></script>
     <script src="js/script.js"></script>
 </head>
 <body>
-     <div > 
-            <div>
+     <!--<div class = "DebugGrid"> 
+          <div>
                 <div>
                     <div></div>
                     <div></div>
@@ -25,12 +29,12 @@
                     <div></div>
                 </div>
             </div>
-        </div> 
+        </div> -->
     <main>
         <div class="wrapper">
             <h2>Выберите способ доставки</h2>
             <div class="tab">
-                   <button class="button tablinks arrow-1" onclick="openTab(event, 'Delivery')"  id="defaultOpen"><span>Доставка</span></button>
+                   <button class="button tablinks arrow-1" onclick="openTab(event, 'Delivery')" id="defaultOpen"><span>Доставка</span></button>
                   <div class = "right">
                     <div id = "arrow-1" class="arrow-4">
                         <span class="arrow-4-left"></span>
@@ -38,21 +42,21 @@
                     </div> 
                   </div>
 
-              <button class="button tablinks button-lg" onclick="openTab(event, 'Pickup')"><span>Самовывоз</span></button>
+              <button  class="button tablinks button-lg" onclick="openTab(event, 'Pickup')"><span>Самовывоз</span></button>
             </div>
 
             <div class="margin-bot"> 
-                <div id="Delivery" class="tabcontent">
+                <div id="Delivery" class="tabcontent marbot">
                  <div class= "delivery">
                   <form>
                     <div class="items">
                         <div class="item">
                             <label>ФИО</label>
-                            <input class= "FIO" id = "FIO" type = "text" placeholder = "Только кириллица"> 
+                            <input class= "FIO" id = "FIO" name="FIO" type = "text" placeholder = "Только кириллица"> 
                         </div>
                         <div class="item">
                             <label>Телефон</label>
-                            <input class= "phone" id = "phone" type = "text" placeholder = "+7 (___) ___-__-__"> 
+                            <input class= "phone" id = "phone"  name="phone" type="phone" placeholder = "+7 (___) ___-__-__" > 
                         </div>
                         <div class="adress">
                             <label>Адрес доставки</label>
@@ -63,7 +67,7 @@
                             <textarea></textarea> 
                         </div>
                     </div>
-                    <button>
+                    <button type='submit' class='submitBtn' onclick="testFIO()">
                        Отправить
                     </button>
                   </form>
@@ -85,12 +89,18 @@
                 <form>
                     <div class="items">
                         <div class="item">
-                           <input name="dest" type="radio" value="1"> <label>Пункт Выдачи заказов Песчаная улица, дом 13</label>
+                            <label class="radio">
+                              <input name="dest" type="radio" />
+                              <div class="radio__text">Пункт Выдачи заказов Песчаная улица, дом 13</div>
+                            </label>
                         </div>
                         <div class="item">
-                            <input name="dest" type="radio" value="2"> <label>Пункт Выдачи заказов Подсосенский переулок, 11</label>
-                        </div>
-                    <div class = "map"><script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A70579104874898dbc9c84d6f68d8f44b856e8a283d4317f1b11754a05f349e3f&amp;width=1140&amp;height=550&amp;lang=ru_RU&amp;scroll=true"></script></div>
+                            <label class="radio">
+                              <input name="dest" type="radio" />
+                              <div class="radio__text">Пункт Выдачи заказов Подсосенский переулок, 11</div>
+                            </label>
+                        </div>              
+                  <div class="map" id="map"></div>
                   </div>
                  <button>
                        Отправить
@@ -100,6 +110,5 @@
             </div>
         </div>
     </main>
-
 </body>
 </html>
